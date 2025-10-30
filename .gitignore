@@ -1,1 +1,9 @@
 .env
+
+# Node dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+out/
