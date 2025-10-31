@@ -1,9 +1,14 @@
 import './App.css'
+import Navbar from './components/Navbar'
+import UploadBar from './components/Upload'
 
 function App() {
   return (
     <>
-      <h1>Statement Analyzer</h1>
+      <Navbar />
+      <main>
+        <UploadBar />
+      </main>
     </>
   )
 }

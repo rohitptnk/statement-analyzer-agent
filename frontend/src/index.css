@@ -4,8 +4,8 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background: linear-gradient(to bottom, #1b81e7, #1976D2);
+  color: rgba(0, 0, 0, 0.87);
+  background: linear-gradient(135deg, rgb(204, 226, 241), rgb(224, 234, 241));
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

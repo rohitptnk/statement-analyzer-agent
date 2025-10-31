@@ -1,6 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+}
+
+.navbar{
+  position: fixed;
+  font-family: "Space Grotesk", sans-serif;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  color: rgb(61, 164, 238);
+  padding: 1px 0.1rem;
+  box-shadow: 0 5px 5px rgba(5, 213, 250, 0.1);
+  z-index: 1000;
+}
+
+.navbar h1{
+  font-size: 33px;
+  font-weight: 1000;
+}
+
+main{
+  margin-top: 80px;
+}
+
+.upload-bar {
+  margin-top: 100px; /* below navbar */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.upload-label {
+  background-color: #4FC3F7;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+#file-upload {
+  display: none; /* hide the default file input */
+}
+
+p {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.upload-text {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 1px;
+  text-align: center;
+}
+
+.text-gray-500 {
+  margin-top: 0; /* remove top margin of second paragraph */
 }
