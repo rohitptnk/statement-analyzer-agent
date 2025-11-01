@@ -4,6 +4,7 @@ import axios from "axios";
 function UploadBar() {
     const [uploading, setUploading] = useState(false);
     const [success, setSuccess] = useState(false)
+    const [result, setResult] = useState<any>(null)
     const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
 
 
@@ -17,11 +18,12 @@ function UploadBar() {
         formData.append("file", selectedFile);
 
         try {
-            const response = await axios.post(`${API_URL}/upload`, formData, {
+            const response = await axios.post(`${API_URL}/analyze`, formData, {
                 headers: { "Content-Type": "multipart/form-data"},
             });
             console.log(response.data);
             setSuccess(true);
+            setResult(response.data.result)
         } catch (err) {
             console.error(err);
             alert("Upload failed:");
@@ -39,7 +41,7 @@ function UploadBar() {
                 Supported formats: PDF, CSV, XLSX
             </p>
             <label htmlFor="file-upload" className="upload-label">
-                {uploading ? "Uploading..." : "Choose File"}
+                {uploading ? "Analyzing..." : "Choose File"}
             </label>
             <input
                 id="file-upload"
@@ -49,11 +51,18 @@ function UploadBar() {
                 disabled={uploading}
             />
 
-            {success && (
+            {success && (             
                 <p className="text-green-600 font-semibold mt-3">
-                    ✅ Upload successful
+                ✅ Analysis successful
                 </p>
-            )}           
+            )}    
+
+            {result && (
+                <div className='mt-4 p-4 bg-gray-100 rounded-lg shadow'>
+                    <h3 className='text-lg font-semibold mb-2'>Overview</h3>
+                    <p>{result.overview}</p>
+                </div>
+            )}       
         </div>
     );
 }
