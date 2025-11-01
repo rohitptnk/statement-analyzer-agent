@@ -1,6 +1,6 @@
 import './App.css'
 import Navbar from './components/Navbar'
-import UploadBar from './components/Upload'
+import UploadBar from './components/Analysis'
 
 function App() {
   return (

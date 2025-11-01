@@ -3,6 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 import shutil
 import os
 from agent import analysis_agent
+from mock_agent import mock_agent
+import pandas as pd
 
 app = FastAPI()
 
@@ -24,9 +26,24 @@ async def analyze_file(file: UploadFile = File(...)):
         with open(file_path, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
         
-        result = analysis_agent(file_path)
+        result = mock_agent(file_path)
 
+        out_df = pd.DataFrame(result["transactions"])
+        out_df["date"] = pd.to_datetime(out_df["date"])
 
-        return {"message": "File analyzed successfully", "result": result}
+        # Create a readable month label (e.g., "October 2025")
+        out_df["month"] = out_df["date"].dt.strftime("%B %Y")
+
+        monthly_summary = (
+            out_df.groupby(["month", "type"])["amount"]
+            .sum()
+            .unstack(fill_value=0)
+            .reset_index()
+            .rename_axis(None, axis=1)
+        )
+
+        monthly_summary["savings"] = monthly_summary.get("income", 0) + monthly_summary.get("expense", 0)
+
+        return {"message": "File analyzed successfully", "result": result, "monthly_summary": monthly_summary.to_dict(orient="records")}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

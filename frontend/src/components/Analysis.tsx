@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from "axios";
+import AnalysisChart from './Chart';
 
 function UploadBar() {
     const [uploading, setUploading] = useState(false);
@@ -23,7 +24,7 @@ function UploadBar() {
             });
             console.log(response.data);
             setSuccess(true);
-            setResult(response.data.result)
+            setResult(response.data)
         } catch (err) {
             console.error(err);
             alert("Upload failed:");
@@ -60,7 +61,9 @@ function UploadBar() {
             {result && (
                 <div className='mt-4 p-4 bg-gray-100 rounded-lg shadow'>
                     <h3 className='text-lg font-semibold mb-2'>Overview</h3>
-                    <p>{result.overview}</p>
+                    <p>{result.result.overview}</p>
+
+                    <AnalysisChart data={result.monthly_summary} />
                 </div>
             )}       
         </div>

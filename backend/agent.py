@@ -6,6 +6,7 @@ from langchain.tools import tool
 from langchain.agents import create_agent
 import os
 from dotenv import load_dotenv
+import json
 
 load_dotenv()
 os.environ["OPENAI_API_KEY"] = os.getenv('OPENAI_API_KEY')
@@ -123,4 +124,5 @@ def analysis_agent(file_path: str):
 if __name__ == "__main__":
     print("running directly")
     result = analysis_agent("statements\Mock_Bank_Statement.pdf")
-    print(result)
+    with open("output.txt", "w", encoding="utf-8") as f:
+        json.dump(result, f, indent=4)
