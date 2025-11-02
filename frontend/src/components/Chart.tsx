@@ -11,10 +11,9 @@ export default function AnalysisChart({ data }: ChartProps){
     }));
 
     return (
-        <div className="chart-container">
-            <h2 className="text-lg font-semibold mb-3">Monthly Financial Overview</h2>
+        <div className="my-chart">
 
-            <ResponsiveContainer width="100%" height={400}>
+            <ResponsiveContainer width="80%" height={500}>
                 <ComposedChart data={transformedData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="month" />

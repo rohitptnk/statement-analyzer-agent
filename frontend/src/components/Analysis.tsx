@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from "axios";
 import AnalysisChart from './Chart';
+import CategoryPie from './Pie';
 
 function UploadBar() {
     const [uploading, setUploading] = useState(false);
@@ -60,10 +61,19 @@ function UploadBar() {
 
             {result && (
                 <div className='mt-4 p-4 bg-gray-100 rounded-lg shadow'>
-                    <h3 className='text-lg font-semibold mb-2'>Overview</h3>
+                    <h1>AI Analysis Report</h1>
+
+                    <h2>Overview</h2>
                     <p>{result.result.overview}</p>
 
+                    <h2> Monthly Financial Overview</h2>
+                    <br />
                     <AnalysisChart data={result.monthly_summary} />
+                    <h2> Category Breakdown</h2>
+                    <CategoryPie data={result.category_summary} />
+
+                    <h2>AI Insights</h2>
+                    <p>{result.result.insights}</p>
                 </div>
             )}       
         </div>

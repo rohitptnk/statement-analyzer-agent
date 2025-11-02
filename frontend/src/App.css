@@ -54,6 +54,7 @@ main{
 p {
   font-size: 0.95rem;
   color: #333;
+  text-align: left;
 }
 
 .upload-text {
@@ -66,4 +67,18 @@ p {
 
 .text-gray-500 {
   margin-top: 0; 
+}
+
+h2{
+  text-align: left;
+}
+
+h1{
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 400;
+}
+
+.my-chart{
+  margin-left: 50px;
+  margin-right: 100px;
 }

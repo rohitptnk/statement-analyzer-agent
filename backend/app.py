@@ -28,12 +28,10 @@ async def analyze_file(file: UploadFile = File(...)):
         
         result = mock_agent(file_path)
 
+        # Monthly Summary
         out_df = pd.DataFrame(result["transactions"])
         out_df["date"] = pd.to_datetime(out_df["date"])
-
-        # Create a readable month label (e.g., "October 2025")
         out_df["month"] = out_df["date"].dt.strftime("%B %Y")
-
         monthly_summary = (
             out_df.groupby(["month", "type"])["amount"]
             .sum()
@@ -41,9 +39,18 @@ async def analyze_file(file: UploadFile = File(...)):
             .reset_index()
             .rename_axis(None, axis=1)
         )
-
         monthly_summary["savings"] = monthly_summary.get("income", 0) + monthly_summary.get("expense", 0)
 
-        return {"message": "File analyzed successfully", "result": result, "monthly_summary": monthly_summary.to_dict(orient="records")}
+        # Category Summary
+        category_summary = (
+            out_df.groupby(["category", "type"])["amount"]
+            .sum()
+            .unstack(fill_value=0)
+            .reset_index()
+            .rename_axis(None, axis=1)
+        )
+
+
+        return {"message": "File analyzed successfully", "result": result, "monthly_summary": monthly_summary.to_dict(orient="records"), "category_summary": category_summary.to_dict(orient="records")}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
