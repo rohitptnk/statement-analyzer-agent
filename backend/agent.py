@@ -63,8 +63,10 @@ def analysis_agent(file_path: str):
         "description": "Structured output containing categorized bank transactions.",
         "properties": {
             "overview": {"type": "string", "description": (
-                "Basic details of the statement file, including the account holder's name, "
-                "account number, address, opening balance, and closing balance, etc. along with a brief overview of the account holder."
+                "Extract and summarize the basic details of the statement file, including the account holder's name, account number, address, "
+                "opening and closing balances, and any other identifiable information. Additionally, provide a concise yet insightful overview "
+                "of the account - such as the general spending and income patterns, major expense categories, frequency of transactions, and any "
+                "notable financial behaviors or trends that can be inferred from the statement."
             )},
             "transactions": {
                 "type": "array",
