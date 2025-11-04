@@ -4,6 +4,7 @@ import AnalysisChart from './Chart';
 import CategoryPie from './Pie';
 import MonthlySummaryTable from './MonthlyTable';
 import CategorySummaryTable from './CategoryTable';
+import DownloadPdfButton from './DownloadPDFButton';
 
 function UploadBar() {
     const [uploading, setUploading] = useState(false);
@@ -62,7 +63,7 @@ function UploadBar() {
             )}    
 
             {result && (
-                <div className='mt-4 p-4 bg-gray-100 rounded-lg shadow'>
+                <div id="dashboard-content" className='mt-4 p-4 bg-gray-100 rounded-lg shadow'>
                     <h1>AI Analysis Report</h1>
 
                     <h2>Overview</h2>
@@ -72,18 +73,24 @@ function UploadBar() {
                     <br />
                     <MonthlySummaryTable data={result.monthly_summary} />
                     <br />
+                    <br />
                     <AnalysisChart data={result.monthly_summary} />
 
                     <h2> Category Breakdown</h2>
                     <br />
                     <CategorySummaryTable data={result.category_summary} />
+                    <br />
+                    <br />
                     <CategoryPie data={result.category_summary} />
 
                     <h2>AI Insights</h2>
                     <p>{result.result.insights}</p>
-
                 </div>
-            )}       
+            )}
+            {result && (
+                <DownloadPdfButton />  
+            )}
+                                 
         </div>
     );
 }

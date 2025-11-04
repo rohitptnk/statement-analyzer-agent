@@ -1,5 +1,5 @@
 .env
-
+frontend\.env
 # Node dependencies
 node_modules/
 
