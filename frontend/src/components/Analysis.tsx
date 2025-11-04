@@ -2,12 +2,14 @@ import { useState } from 'react';
 import axios from "axios";
 import AnalysisChart from './Chart';
 import CategoryPie from './Pie';
+import MonthlySummaryTable from './MonthlyTable';
+import CategorySummaryTable from './CategoryTable';
 
 function UploadBar() {
     const [uploading, setUploading] = useState(false);
     const [success, setSuccess] = useState(false)
     const [result, setResult] = useState<any>(null)
-    const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
+    const API_URL = import.meta.env.VITE_API_URL;
 
 
     const handleUpload = async(e: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,12 +70,18 @@ function UploadBar() {
 
                     <h2> Monthly Financial Overview</h2>
                     <br />
+                    <MonthlySummaryTable data={result.monthly_summary} />
+                    <br />
                     <AnalysisChart data={result.monthly_summary} />
+
                     <h2> Category Breakdown</h2>
+                    <br />
+                    <CategorySummaryTable data={result.category_summary} />
                     <CategoryPie data={result.category_summary} />
 
                     <h2>AI Insights</h2>
                     <p>{result.result.insights}</p>
+
                 </div>
             )}       
         </div>

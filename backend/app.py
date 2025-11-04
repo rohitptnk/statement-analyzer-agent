@@ -26,7 +26,7 @@ async def analyze_file(file: UploadFile = File(...)):
         with open(file_path, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
         
-        result = analysis_agent(file_path)
+        result = mock_agent(file_path)
 
         # Monthly Summary
         out_df = pd.DataFrame(result["transactions"])

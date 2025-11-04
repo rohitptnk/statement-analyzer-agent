@@ -82,3 +82,30 @@ h1{
   margin-left: 50px;
   margin-right: 100px;
 }
+
+/* Explicit table styles for environments without Tailwind CSS */
+.monthly-table{
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
+  min-width: 500px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+.monthly-table, .monthly-table th, .monthly-table td{
+  border: 2px solid #000; /* strong black borders so they're always visible */
+}
+.monthly-table th, .monthly-table td{
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+.monthly-table thead th{
+  background: #f3f4f6;
+  text-align: left;
+}
+.monthly-table tbody tr:nth-child(even){
+  background: #fff;
+}
+.monthly-table tbody tr:hover{
+  background: #f9fafb;
+}

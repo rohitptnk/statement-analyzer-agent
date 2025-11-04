@@ -10,8 +10,33 @@ interface Props {
     data: CategoryData[];
 }
 
-const COLORS_EXPENSE = ["#FF6B6B", "#FF8C00", "#FFD93D", "#FFB6C1", "#FF4500"];
-const COLORS_INCOME = ["#4CAF50", "#00C49F", "#0088FE", "#00BFFF", "#32CD32"];
+// Vibrant, well-separated palettes for better visual distinction
+// Expanded vibrant palettes (10 colors each) for better category coverage
+const COLORS_EXPENSE = [
+    "#FF4D4F", // vivid red
+    "#FF7A45", // bright orange
+    "#FFC53D", // warm yellow
+    "#FF85C0", // pink
+    "#9254DE", // purple
+    "#36CFC9", // teal
+    "#FA541C", // deep orange
+    "#D4380D", // rust
+    "#F759AB", // magenta
+    "#FADB14", // bright yellow
+];
+
+const COLORS_INCOME = [
+    "#52C41A", // vivid green
+    "#389E0D", // darker green
+    "#13C2C2", // cyan
+    "#0891B2", // teal-blue
+    "#1890FF", // bright blue
+    "#2F54EB", // indigo
+    "#722ED1", // violet
+    "#00B96B", // mint green
+    "#00E5FF", // electric cyan
+    "#00C853", // strong green
+];
 
 const CategoryPieCharts: React.FC<Props> = ({ data }) => {
     const expenseData = data

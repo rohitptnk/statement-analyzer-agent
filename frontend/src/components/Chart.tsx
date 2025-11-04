@@ -13,7 +13,7 @@ export default function AnalysisChart({ data }: ChartProps){
     return (
         <div className="my-chart">
 
-            <ResponsiveContainer width="80%" height={500}>
+            <ResponsiveContainer width="100%" height={500}>
                 <ComposedChart data={transformedData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="month" />
